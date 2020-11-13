@@ -1,0 +1,23 @@
+<h1>{{title|uppercase }}</h1>
+<form [formGroup]="formGroup">
+
+  <div class="form-group">
+    <label class="label">Username</label>
+    <small *ngIf="isDisplayError('username')" class="error-string">
+      Error</small>
+    <input class="form-control" formControlName="username">
+  </div>
+
+  <div class="form-group" *ngIf="action.kind !== 'add'">
+    <button type="button" class="btn btn-danger bt-action"
+      (click)="resetPassword()">{{translateResults.button_title.reset_password}}</button>
+  </div>
+  <div>
+    <button *ngIf="action.kind !=='add'" type="button" class="btn btn-secondary bt-action"
+      (click)="navigateEquipments()">{{translateResults.button_title.equipment_list}}</button>
+    <button *ngIf="action.kind ==='add'" type="button" class="btn btn-success bt-action"
+      (click)="createUser()">{{translateResults.button_title.add}}</button>
+    <button *ngIf="action.kind ==='view' || action.kind ==='edit'" type="button" class="btn btn-primary bt-action"
+      (click)="resetForm()">{{translateResults.button_title.return}}</button>
+  </div>
+</form>

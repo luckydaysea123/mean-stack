@@ -1,0 +1,54 @@
+<app-navigation></app-navigation>
+<h1 *ngIf="!flag" class="d-flex justify-content-center">{{title|uppercase }}</h1>
+<div class="container-fluid">
+  <div class="row col align-self-center">
+    <div *ngIf="flag" class="col col-lg-4">
+      <app-create (isF5Table)="F5Table($event)" [formGroup]="formGroup" [action]="action"></app-create>
+    </div>
+    <div class="col" [ngClass]="{'col-lg-8': flag}">
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">Type</th>
+            <th scope="col">Status</th>
+            <th scope="col">Description</th>
+            <th *ngIf="flag" scope="col">Owner</th>
+            <th *ngIf="flag" scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of equipments | slice:begin:end; index as i">
+            <th scope="row">{{i + 1}}</th>
+            <td>{{item.name}}</td>
+            <td>{{getType(item.type)}}</td>
+            <td>{{getStatus(item.status)}}</td>
+            <td>{{item.desc}}</td>
+            <td *ngIf="flag">{{item.ownerName}}</td>
+            <td *ngIf="flag">
+              <button type="button" class="btn btn-primary bt-action" (click)="onView(item)">
+                <i class="fa fa-eye"></i></button>
+              <button type="button" class="btn btn-warning bt-action" (click)="onEdit(item)">
+                <i class=" fa fa-edit"></i></button>
+              <button type="button" class="btn btn-danger bt-action" (click)="onDelete(item)">
+                <i class=" fa fa-trash"></i></button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <nav aria-label="Page navigation example">
+        <ul class="pagination">
+          <div class="form-group">
+            <select class="form-control page-size-dropdown" (change)="onClickPageSize()" [(ngModel)]="pageSize">
+              <option *ngFor="let status of PageSizeDropdown" value="{{status.value}}">{{status.label}}</option>
+            </select>
+          </div>
+          <li class="page-item" *ngFor="let item of pageItem" (click)="onClickPageItem(item)">
+            <a class="page-link">{{item + 1}}</a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</div>

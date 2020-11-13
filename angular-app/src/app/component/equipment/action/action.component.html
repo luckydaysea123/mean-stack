@@ -1,0 +1,68 @@
+<h1>{{title|uppercase }}</h1>
+<form [formGroup]="formGroup">
+  <div class="form-group">
+    <label class="label">Name</label>
+    <small *ngIf="isDisplayError('name')" class="error-string">
+      Error</small>
+    <input class="form-control" formControlName="name">
+
+  </div>
+  <div class="form-group">
+    <label class="label">Description</label>
+    <small *ngIf="isDisplayError('desc')" class="error-string">
+      Error</small>
+    <textarea class="form-control" rows="7" formControlName="desc"></textarea>
+
+  </div>
+  <div class="form-group">
+    <label class="label">Type</label>
+    <small *ngIf="isDisplayError('type')" class="error-string">
+      Error</small>
+    <select class="form-control" formControlName="type">
+      <!-- <option value="">Select</option> -->
+      <option *ngFor="let type of types" value="{{type.value}}">{{type.label}}</option>
+    </select>
+  </div>
+  <div class="form-group">
+    <label class="label">Status</label>
+    <select class="form-control" formControlName="status" (change)="onClickStatus()">
+      <!-- <option value="">Select</option> -->
+      <option *ngFor="let status of statuses" value="{{status.value}}">{{status.label}}</option>
+    </select>
+  </div>
+
+  <div class="form-group" *ngIf="isDisplayOwnerInput()">
+    <label class="label">Owner</label>
+    <small *ngIf="isDisplayError('owner')" class="error-string">
+      Error</small>
+    <select class="form-control selectpicker" type="search" formControlName="owner" data-live-search="true">
+      <input>
+      <option value="">Select</option>
+      <option *ngFor="let user of users" value="{{user.value}}" data-tokens="vn">{{user.label}}</option>
+    </select>
+  </div>
+
+  <button *ngIf="action.kind ==='add'" type="button" class="btn btn-success bt-action"
+    (click)="createEquipment()">{{translateResults.button_title.add}}</button>
+  <button *ngIf="action.kind ==='view' || action.kind ==='edit'" type="button" class="btn btn-primary bt-action"
+    (click)="resetForm()">{{translateResults.button_title.return}}</button>
+  <button *ngIf="action.kind ==='edit'" type="button" class="btn btn-success bt-action"
+    (click)="editEquipment()">{{translateResults.button_title.edit}}</button>
+</form>
+
+
+<!-- <form class="form-signin">
+    <img class="mb-4" src="/docs/4.5/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
+    <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+    <label for="inputEmail" class="sr-only">Email address</label>
+    <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
+    <label for="inputPassword" class="sr-only">Password</label>
+    <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+    <div class="checkbox mb-3">
+      <label>
+        <input type="checkbox" value="remember-me"> Remember me
+      </label>
+    </div>
+    <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+    <p class="mt-5 mb-3 text-muted">&copy; 2017-2020</p>
+  </form> -->

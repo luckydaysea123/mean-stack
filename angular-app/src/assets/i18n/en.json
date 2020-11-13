@@ -1,0 +1,27 @@
+{
+  "equipment": {},
+  "action_title": {
+    "add": "Add New",
+    "edit": "Edit",
+    "view": "View",
+    "change_password": "change password"
+  },
+  "button_title": {
+    "add": "add new",
+    "edit": "save",
+    "return": "return to add new",
+    "equipment_list": "equipment list",
+    "reset_password": "reset password"
+  },
+  "toast": {
+    "register_user_successfully": "Register user successfully with default TMA password!",
+    "reset_password_successfully": "Reset password successfully to default TMA password!",
+    "change_password_successfully": "Change password successfully! You will log out!",
+    "password_confirm_error": "Password and confirm password not match!",
+    "invalid_current_password": "Invalid current password!"
+  },
+  "dialog": {
+    "delete_confirm": "Are you sure to delete?",
+    "reset_password_confirm": "Are you sure to reset this password to default TMA password?"
+  }
+}

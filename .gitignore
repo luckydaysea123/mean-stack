@@ -1,0 +1,5 @@
+angular-app/dist
+angular-app/node_modules
+angular-app/e2e
+express-server/node_modules
+
