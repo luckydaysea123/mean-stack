@@ -33,7 +33,7 @@ export class UserComponent implements OnInit {
 
   ngOnInit(): void {
     this.formGroup = new FormGroup({
-      username: new FormControl('', {}),
+      username: new FormControl('', {validators: [Validators.required, Validators.minLength(6), Validators.maxLength(30)] }),
       password: new FormControl('', {}),
       _id: new FormControl('', {}),
     });
